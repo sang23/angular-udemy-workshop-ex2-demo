@@ -1,0 +1,6 @@
+{
+    "user" : "zang2538",
+    "pass" : "$zang2538",
+    "connection" : "mongodb+srv://zang2538:<password>@cluster0.yx2d0.azure.mongodb.net/<dbname>?retryWrites=true&w=majority",
+    "Add current IP address":"27.55.75.36"
+}
