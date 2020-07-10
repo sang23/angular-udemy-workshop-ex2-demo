@@ -149,6 +149,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angular-udemy-workshop-ex2-demo"
+    }
+  },
+  "defaultProject": "angular-udemy-workshop-ex2-demo",
+  "cli": {
+    "analytics": "8f7c9790-9a71-437a-a980-f14262cba25c"
+  }
 }
