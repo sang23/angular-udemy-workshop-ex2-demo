@@ -8,29 +8,29 @@
       <div class="col-lg-4 col-md-4">
         <div class="form-group">
           <label>ชื่อ</label>
-          <input type="text" class="form-control" />
+          <input type="text" class="form-control" name="name" [(ngModel)]="name" />
         </div>
       </div>
       <div class="col-lg-4 col-md-4">
         <div class="form-group">
           <label>เบอร์โทร</label>
-          <input type="text" class="form-control" />
+          <input type="text" class="form-control" name="tel" [(ngModel)]="tel" />
         </div>
       </div>
       <div class="col-lg-4 col-md-4">
         <div class="form-group">
           <label>เลขผู้เสียภาษี</label>
-          <input type="text" class="form-control" />
+          <input type="text" class="form-control" name="tax" [(ngModel)]="tax" />
         </div>
       </div>
       <div class="col-lg-12 col-md-12">
         <div class="form-group">
           <label>ที่อยู่</label>
-          <input type="text" class="form-control" />
+          <input type="text" class="form-control" name="address" [(ngModel)]="address"/>
         </div>
       </div>
       <div class="text-center">
-          <button class="btn btn-primary btn-lg">
+          <button class="btn btn-primary btn-lg" (click)="save()">
             <i class="fa fa-check"></i>
             บันทึก
           </button>

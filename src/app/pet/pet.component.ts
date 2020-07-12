@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ShareService } from '../ShareService';
 
 @Component({
   selector: 'app-pet',

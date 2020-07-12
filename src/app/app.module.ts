@@ -13,6 +13,10 @@ import { RepairComponent } from './repair/repair.component';
 import { MediceenComponent } from './mediceen/mediceen.component';
 import { ReportComponent } from './report/report.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { ShareService } from './ShareService';
+
 const appRouter: Routes = [
   {
     path: '',
@@ -59,8 +63,10 @@ const appRouter: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRouter),
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [ShareService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
