@@ -23,7 +23,11 @@ export class RepairComponent implements OnInit {
   }
 
   repairs: any
-  repair = {}
+  repair = {
+    problem: null,
+  }
+
+  mediceens: any
 
   constructor(
     private http: HttpClient,
@@ -64,7 +68,9 @@ export class RepairComponent implements OnInit {
     this.http.post(this.shareService.serverPath + '/repairSave', params).subscribe((res: any) =>{
       alert("บันทึกเสร็จเรียบร้อย")
       this.loadRepairOfPet()
-      this.repair = {}
+      this.repair = {
+        problem: null,
+      }
     });
   }
 
@@ -88,6 +94,12 @@ export class RepairComponent implements OnInit {
 
   editRepair(item){
     this.repair = item
+  }
+
+  modalMediceen(item){
+    this.http.get(this.shareService.serverPath + "/mediceenAll", item).subscribe((res: any) =>{
+      this.mediceens = res
+    })
   }
 
 }
