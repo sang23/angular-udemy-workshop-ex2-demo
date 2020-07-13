@@ -15,7 +15,8 @@ export class MediceenComponent implements OnInit {
     name: null,
     buy: null,
     sale: null,
-    remark: null
+    remark: null,
+    _id: null
   }
 
   constructor(private http: HttpClient, private shareService: ShareService) { }
@@ -30,7 +31,8 @@ export class MediceenComponent implements OnInit {
       name: null,
       buy: null,
       sale: null,
-      remark: null
+      remark: null,
+      _id: null
     }
   }
 
@@ -58,7 +60,16 @@ export class MediceenComponent implements OnInit {
   }
 
   editMediceen(item){
-    this.mediceen = item
+    this.mediceen = {
+      code: item.code,
+      name: item.name,
+      buy: item.buy,
+      sale: item.sale,
+      remark: item.remark,
+      _id: item._id,
+    }
+
+    console.log(this.mediceen._id)
   }
 
 }
