@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ShareService } from '../ShareService';
 
 @Component({
   selector: 'app-mediceen',
@@ -7,9 +9,56 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MediceenComponent implements OnInit {
 
-  constructor() { }
+  mediceens: any
+  mediceen = {
+    code: null,
+    name: null,
+    buy: null,
+    sale: null,
+    remark: null
+  }
+
+  constructor(private http: HttpClient, private shareService: ShareService) { }
 
   ngOnInit(): void {
+    this.loadMediceen()
+  }
+
+  clearMeidceen(){
+    this.mediceen = {
+      code: null,
+      name: null,
+      buy: null,
+      sale: null,
+      remark: null
+    }
+  }
+
+  save(){
+    this.http.post(this.shareService.serverPath + '/saveMediceen', this.mediceen).subscribe((res: any) => {
+      alert("บันทึกรายการแล้ว")
+      this.clearMeidceen()
+      this.loadMediceen()
+    })
+  }
+
+  loadMediceen(){
+    this.http.get(this.shareService.serverPath + '/mediceenAll').subscribe((res: any) =>{
+      this.mediceens = res
+    })
+  }
+
+  mediceenDelete(item){
+    if (confirm("ยืนยันการลบ ?")){
+      this.http.post(this.shareService.serverPath + '/mediceenDelete', item).subscribe((res: any) =>{
+        alert("ลบรายการแล้ว")
+        this.loadMediceen()
+      })
+    }
+  }
+
+  editMediceen(item){
+    this.mediceen = item
   }
 
 }
