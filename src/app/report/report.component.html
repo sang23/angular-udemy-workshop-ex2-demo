@@ -7,26 +7,45 @@
             <div class="col-lg-5 col-md-5">
                 <div class="input-group">
                     <span class="input-group-addon">จากวันที่</span>
-                    <input type="text" class="form-control" />
+                    <input type="date" class="form-control" [(ngModel)]="search.from" />
                 </div>
             </div>
             <div class="col-lg-5 col-md-5">
                 <div class="input-group">
                     <span class="input-group-addon">ถึงวันที่</span>
-                    <input type="text" class="form-control" />
+                    <input type="date" class="form-control" [(ngModel)]="search.to" />
                 </div>
             </div>
             <div class="col-lg-2 col-md-2">
-                <a class="btn btn-primary">
+                <a class="btn btn-primary" (click)="shopReport()">
                     <i class="fa fa-check" aria-hidden="true"></i> แสดง
                 </a>
             </div>
         </div>
-        <div>
-            [table]
+        <div style="padding-top: 5px">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>วันที่</th>
+                        <th>เจ้าของ</th>
+                        <th>สัตว์เลี้ยง</th>
+                        <th>ค่ารักษา</th>
+                        <th>อาการ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of repairs">
+                        <td>{{ item.created_at | date: 'dd/MM/yyyy HH:mm' }}</td>
+                        <td>{{ item.customer.name }}</td>
+                        <td>{{ item.pet.name }}</td>
+                        <td class="text-right">{{ item.price | number }}</td>
+                        <td>{{ item.problem }}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="text-center">
-            <font size="6">ยอดขาย : <span class="text-danger"> 00,000.00 </span> บาท</font>
+            <font size="6">ยอดขาย : <span class="text-danger">{{ totalPrice | number }}</span> บาท</font>
         </div>
     </div>
 </div>
