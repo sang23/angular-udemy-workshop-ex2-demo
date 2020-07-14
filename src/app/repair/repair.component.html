@@ -76,6 +76,24 @@
             [(ngModel)]="repair.problem"
           />
         </div>
+        <div class="form-group">
+          <label>ค่าบริการ</label>
+          <input
+            type="text"
+            class="form-control"
+            name="repair.price"
+            [(ngModel)]="repair.price"
+          />
+        </div>
+        <div class="form-group">
+          <label>หมายเหตุ</label>
+          <input
+            type="text"
+            class="form-control"
+            name="repair.remark"
+            [(ngModel)]="repair.remark"
+          />
+        </div>
       </div>
     </div>
     <div class="text-center">
@@ -95,7 +113,7 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th width="170px"></th>
+          <th width="210px"></th>
           <th>อาการ</th>
         </tr>
       </thead>
@@ -120,6 +138,10 @@
             &nbsp;
             <a class="btn btn-primary" (click)="modalMediceen(item)" data-toggle="modal" data-target="#modalMediceen">
               <i class="fa fa-list-alt" aria-hidden="true"></i>
+            </a>
+            &nbsp;
+            <a class="btn btn-primary" (click)="modalHistory(item)" data-toggle="modal" data-target="#modalHistory">
+              <i class="fa fa-list" aria-hidden="true"></i>
             </a>
           </th>
           <td>{{ item.problem }}</td>
@@ -205,13 +227,61 @@
           <tbody>
             <tr *ngFor="let item of mediceens">
               <td class="text-center">
-                <a class="btn btn-primary" data-toggle="modal" data-target="#modalMediceenFrom">
+                <a class="btn btn-primary" (click)="chooseMediceen(item)" data-toggle="modal" data-target="#modalMediceenFrom">
                   <i class="fa fa-check" aria-hidden="true"></i>
                 </a>
               </td>
               <td>{{ item.code }}</td>
               <td>{{ item.name }}</td>
               <td class="text-right">{{ item.sale }}</td>
+              <td>{{ item.remark }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="modalHistory" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title"><i class="fa fa-pencil"></i> ประวัติการใช้เวชภัณฑ์</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th width="110px"></th>
+              <th>ชื่อ</th>
+              <th>จำนวน</th>
+              <th>หมายเหตุ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of historys">
+              <td class="text-center">
+                <a class="btn btn-primary" (click)="editHistory(item)" data-toggle="modal" data-target="#modalMediceenFrom" >
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                </a>
+                &nbsp;
+                <a class="btn btn-danger" (click)="removeHistory(item)" >
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                </a>
+              </td>
+              <td>{{ item.mediceen[0].name }}</td>
+              <td>{{ item.qty }}</td>
               <td>{{ item.remark }}</td>
             </tr>
           </tbody>
@@ -240,14 +310,14 @@
       <div class="modal-body">
         <div class="form-group">
           <label>จำนวน</label>
-          <input type="text" class="form-control" />
+          <input type="text" class="form-control" [(ngModel)]="repairMediceen.qty" />
         </div>
         <div class="form-group">
           <label>หมายเหตุ</label>
-          <input type="text" class="form-control" />
+          <input type="text" class="form-control" [(ngModel)]="repairMediceen.remark" />
         </div>
         <div class="text-center">
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" class="btn btn-primary" (click)="saveRepairMediceen()" data-dismiss="modal">
             <i class="fa fa-check" aria-hidden="true"></i> บันทึก
           </button>
         </div>
